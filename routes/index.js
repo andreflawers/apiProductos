@@ -1,3 +1,4 @@
+/// <reference path="../typings/index.d.ts" />
 var express = require('express');
 var router = express.Router();
 var usuarioModelo= require('../models/usuario');
@@ -20,4 +21,18 @@ router.get('/usuarios',function (req,res) {
   }
     );
  });
+
+ router.get('/login',function (req,res) {
+   var nombreUsuario = req.query.user;
+   var contrasenaUsuario=req.query.contrasena;
+   usuarioModelo.loginUsuario(nombreUsuario,contrasenaUsuario,function (error,data) {
+      if(typeof data !== 'undefined' &&  data.length >= 1)
+      {
+        res.json(200,{"result":"success"});
+      }else
+      {
+        res.json(404,{"result":"no exist"});
+      }
+     });
+   });
 module.exports = router;
