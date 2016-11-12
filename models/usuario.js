@@ -1,6 +1,6 @@
 /// <reference path="../typings/index.d.ts" />
 var sql = require("mssql");
-var connectionString = "mssql://sa:ktbffh@localhost/productosApp"
+var connectionString ="mssql://mainuser:(developer123)@productosapp.database.windows.net:1433/productosapp?encrypt=true";
 console.log('aca');
 
 var usuarioModelo = new Object();
@@ -8,18 +8,19 @@ var usuarioModelo = new Object();
 usuarioModelo.getUsuarios = function (callback) {
 
     sql.connect(connectionString).then(function () {
-
+        
         new sql.Request().query("select *  from usuarios").then(function (recordset) {
             console.log('query ejecutando : seleccionar usuarios');
             callback(null, recordset);
         }).catch(function (err) {
-            console.log(err);
+            console.error(err);
         });
 
     }).catch(function (err) {
-        console.log(err);
+        console.error(err);
     });
-    sql.close();
+ 
+
 }
 
 usuarioModelo.loginUsuario = function (nombreUsuario, contrasenaUsuario, callback) {
@@ -36,7 +37,7 @@ usuarioModelo.loginUsuario = function (nombreUsuario, contrasenaUsuario, callbac
 
     }).catch(function (err) {
         console.error(err);
-    })
+    });
 }
 
 
