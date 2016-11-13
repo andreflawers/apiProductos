@@ -2,7 +2,7 @@
 var express = require('express');
 var router = express.Router();
 var usuarioModelo= require('../models/usuario');
-
+var productosModelo = require('../models/productos');
 /* GET home page. */
 router.get('/', function(req, res, next) {
   res.json({message:'ususarios api'});
@@ -35,4 +35,19 @@ router.get('/usuarios',function (req,res) {
       }
      });
    });
+  
+
+//Productos
+router.get('/productos',function (req,res) {
+  productosModelo.getProductos(function (error,data) {
+      if(typeof data !== 'undefined')
+      {
+        res.status(200).json(data);
+      }else
+      {
+        res.status(400).json(error);
+     }
+    });
+  });
+
 module.exports = router;
