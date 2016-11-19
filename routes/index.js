@@ -3,6 +3,7 @@ var express = require('express');
 var router = express.Router();
 var usuarioModelo= require('../models/usuario');
 var productosModelo = require('../models/productos');
+var ordenModel= require('../models/orden');
 /* GET home page. */
 router.get('/', function(req, res, next) {
   res.json({message:'ususarios api'});
@@ -49,5 +50,26 @@ router.get('/productos',function (req,res) {
      }
     });
   });
+
+//Orden
+
+router.post('/orden',function (req,res) { 
+  var jsonData = req.body;
+  console.log("yeison post",jsonData);
+  ordenModel.postOrden(jsonData,function (error,datos) { 
+      if(error== null)
+      {
+        console.log("aca plox")
+        res.status(200).json({"result":"success"});
+      }else
+      {
+        console.log(error);
+        console.log("a ver aca");
+        res.status(400).json({"result":"error"});
+      }
+   });
+  
+ });
+
 
 module.exports = router;
