@@ -4,6 +4,7 @@ var router = express.Router();
 var usuarioModelo= require('../models/usuario');
 var productosModelo = require('../models/productos');
 var ordenModel= require('../models/orden');
+var clientModelo= require('../models/cliente')
 /* GET home page. */
 router.get('/', function(req, res, next) {
   res.json({message:'ususarios api'});
@@ -29,7 +30,7 @@ router.get('/usuarios',function (req,res) {
    usuarioModelo.loginUsuario(nombreUsuario,contrasenaUsuario,function (error,data) {
       if(typeof data !== 'undefined' &&  data.length >= 1)
       {
-        res.json(200,{"result":"success"});
+        res.json(200,data[0]);
       }else
       {
         res.json(404,{"result":"no exist"});
@@ -70,6 +71,21 @@ router.post('/orden',function (req,res) {
    });
   
  });
+
+//Cliente
+router.get('/cliente',function (req,res) {
+
+var idUsuario= req.query.idUsuario;
+clientModelo.getDatosCliente(idUsuario,function (error,data) {
+    if(typeof data!=='undefined' && data.length>=1)
+    {
+      res.status(200).json(data[0]);
+    }else{
+      res.status(404).json({"result":"error"});
+    }
+
+  });
+  });
 
 
 module.exports = router;
