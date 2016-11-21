@@ -49,7 +49,7 @@ router.get('/productos',function (req,res) {
         res.status(200).json(data);
       }else
       {
-        res.status(400).json(error);
+        res.status(404).json(error);
      }
     });
   });
@@ -68,7 +68,7 @@ router.post('/orden',function (req,res) {
       {
         console.log(error);
         console.log("a ver aca");
-        res.status(400).json({"result":"error"});
+        res.status(404).json({"result":"error"});
       }
    });
   
@@ -87,6 +87,21 @@ clientModelo.getClientes(function (error,data) {
 
   });
   });
+
+router.post('/cliente',function (req,res) {
+  var jsonData= req.body;
+  console.log("data de cliente" ,jsonData);  
+clientModelo.postCliente(jsonData,function (error,result) {
+    if(result=="success")
+    {
+      res.status(200).json({"result":"success"});
+    }else
+    {
+      res.status(404).json({"resul":"error"});
+    }
+  });
+
+});
 
 //Empleado
 

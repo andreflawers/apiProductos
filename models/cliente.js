@@ -20,4 +20,24 @@ clienteModelo.getClientes=function (callback) {
             console.error(err);
       });
   }
+
+clienteModelo.postCliente=function (data,callback) {
+  sql.connect(connectionString).then(function () {
+      new sql.Request().query("INSERT INTO clientes VALUES ('"+
+                              data.nombreCliente+"','"+
+                              data.direccionCliente+"','"+
+                              data.telefonoCliente+"','"+
+                              data.rucCliente+"')").then(function (recordset) {
+                                  callback(null,"success");
+                                }).catch(function (err) {
+                                callback(err,null);
+                                console.error(err);
+                                });
+
+    }).catch(function (err) {
+      callback(err,null);
+      console.error(err);
+      });
+  }
+
 module.exports=clienteModelo;  
