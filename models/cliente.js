@@ -3,21 +3,21 @@ var connectionString ="mssql://mainuser:(developer123)@productosapp.database.win
 
 var clienteModelo= new Object();
 
-clienteModelo.getDatosCliente= function (idUsuario,callback) {
-    sql.connect(connectionString).then(function () {
-        new sql.Request().query("SELECT * FROM clientes WHERE idUsuario = " +idUsuario)
+clienteModelo.getClientes=function (callback) {
+    sql.connect(connectionString).then(function () { 
+        new sql.Request().query("SELECT * FROM clientes")
         .then(function (recordset) {
-            console.log('query ejecutandose : traer datos de cliente');
+            console.log('query ejecutaandose : get clientes');
             callback(null,recordset);
           })
         .catch(function (err) {
+             callback(err,null);
             console.error(err);
-          })
-
-      }).catch(function (err) {
-          console.error(err);
-        });
-
+          });
+     })
+    .catch(function (err) {
+            callback(err,null);
+            console.error(err);
+      });
   }
-
 module.exports=clienteModelo;  

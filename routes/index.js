@@ -5,6 +5,8 @@ var usuarioModelo= require('../models/usuario');
 var productosModelo = require('../models/productos');
 var ordenModel= require('../models/orden');
 var clientModelo= require('../models/cliente')
+var empleadoModelo= require('../models/empleado')
+
 /* GET home page. */
 router.get('/', function(req, res, next) {
   res.json({message:'ususarios api'});
@@ -73,13 +75,12 @@ router.post('/orden',function (req,res) {
  });
 
 //Cliente
-router.get('/cliente',function (req,res) {
+router.get('/clientes',function (req,res) {
 
-var idUsuario= req.query.idUsuario;
-clientModelo.getDatosCliente(idUsuario,function (error,data) {
-    if(typeof data!=='undefined' && data.length>=1)
+clientModelo.getClientes(function (error,data) {
+    if(typeof data!=='undefined')
     {
-      res.status(200).json(data[0]);
+      res.status(200).json(data);
     }else{
       res.status(404).json({"result":"error"});
     }
@@ -87,5 +88,18 @@ clientModelo.getDatosCliente(idUsuario,function (error,data) {
   });
   });
 
+//Empleado
+
+router.get('/empleado',function (req,res) {
+    var idUsuario = req.query.idUsuario;  
+    empleadoModelo.getEmpleado(idUsuario,function (error,data) {
+      if(typeof data !=='undefined' && data.length>=1)
+      {
+        res.status(200).json(data[0]);
+      }else{
+        res.status(404).json({"result":"error"});
+      }
+      });
+ });
 
 module.exports = router;

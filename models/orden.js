@@ -12,6 +12,7 @@ ordenModelo.postOrden= function (data,callback) {
         Request.input('descuentoOrden',sql.Decimal(10,4),data.descuentoOrden)
         Request.input('totalOrden',sql.Decimal(10,4),data.totalOrden)
         Request.input('idCliente',sql.Int,data.idCliente)
+        Request.input('idEmpleado',sql.Int,data.idEmpleado)
         Request.execute('SP_insertarPedido').then(function (error,recordset) {
 
             console.log("respuesta : ");
@@ -39,5 +40,7 @@ ordenModelo.postOrden= function (data,callback) {
 //         console.error(err);
      });
 }
+
+
 
 module.exports=ordenModelo;
