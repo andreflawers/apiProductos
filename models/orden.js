@@ -44,7 +44,7 @@ ordenModelo.postOrden= function (data,callback) {
 
 ordenModelo.getOrdenes=function (callback) {
   sql.connect(connectionString).then(function () {
-    new sql.Request().query("select  idOrden,fechaOrden,costoOrden,descuentoOrden,totalOrden,nombreCliente from ordenes o inner join clientes c on o.idCliente = c.idCliente").then(function (recordset) {
+    new sql.Request().query("select  idOrden,fechaOrden,costoOrden,descuentoOrden,totalOrden,nombreCliente,locacionOrden from ordenes o inner join clientes c on o.idCliente = c.idCliente").then(function (recordset) {
       callback(null,recordset);
       console.log('query ejecutandose : get ordenes'); 
      }).catch(function (err) {
