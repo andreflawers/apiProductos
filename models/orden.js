@@ -13,6 +13,7 @@ ordenModelo.postOrden= function (data,callback) {
         Request.input('totalOrden',sql.Decimal(10,4),data.totalOrden)
         Request.input('idCliente',sql.Int,data.idCliente)
         Request.input('idEmpleado',sql.Int,data.idEmpleado)
+        Request.input('locacionOrden',sql.VarChar(300),data.locacionOrden)
         Request.execute('SP_insertarPedido').then(function (error,recordset) {
 
             console.log("respuesta : ");
