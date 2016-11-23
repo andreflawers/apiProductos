@@ -1,0 +1,30 @@
+doctype html
+html(lang="es")
+    head
+        title SubOrden
+        meta(charset="UTF-8")
+        link(href="/css/bootstrap.min.css",rel="stylesheet")
+        script(src="/js/jquery.min.js")
+        script(src="/js/bootstrap.min.js")
+    body
+        div.page-header
+                h1 Detalles de la orden
+        div.row
+             div.col-md-10.col-md-offset-1
+                table.table
+                    thead
+                        tr
+                            th idSubOrden
+                            th nombreProducto
+                            th precioProducto
+                            th cantidad
+                            th descuento
+                            th subTotal
+                        -for(var index in lista)
+                            tr
+                                td #{lista[index].idSuborden}
+                                td #{lista[index].nombreProducto}
+                                td #{lista[index].precioProducto.toFixed(2)}
+                                td #{lista[index].cantidad}
+                                td #{lista[index].descuento.toFixed(2)}
+                                td #{lista[index].subtotal.toFixed(2)}

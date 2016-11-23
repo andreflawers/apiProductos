@@ -1,0 +1,32 @@
+doctype html
+html(lang="es")
+    head
+        title Ordenes
+        meta(charset="UTF-8")
+        link(href="/css/bootstrap.min.css",rel="stylesheet")
+        script(src="/js/jquery.min.js")
+        script(src="/js/bootstrap.min.js")
+    body
+        div.page-header
+                h1 Ordenes
+        div.row
+            div.col-md-10.col-md-offset-1
+                table.table
+                    thead
+                        tr
+                            th idOrden
+                            th fechaOrden
+                            th costoOrden
+                            th descuentoOrden
+                            th totalOrden
+                            th nombreCliente                            
+                            -for(var prop in listaOrdenes)        
+                                tr
+                                    td #{listaOrdenes[prop].idOrden}
+                                    td #{moment.utc(listaOrdenes[prop].fechaOrden).format('MM/DD/YYYY')}
+                                    td #{listaOrdenes[prop].costoOrden.toFixed(2)}
+                                    td #{listaOrdenes[prop].descuentoOrden.toFixed(2)}
+                                    td #{listaOrdenes[prop].totalOrden.toFixed(2)}
+                                    td #{listaOrdenes[prop].nombreCliente}
+                                    td
+                                        a(href="/suborden?idOrden=#{listaOrdenes[prop].idOrden}") Detalles

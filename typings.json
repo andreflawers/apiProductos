@@ -5,6 +5,7 @@
   },
   "globalDependencies": {
     "es2015-promise": "registry:env/es2015-promise#1.0.0+20160526151700",
+    "jade": "registry:dt/jade#0.0.0+20160316155526",
     "node": "registry:dt/node#6.0.0+20161110151007"
   }
 }
