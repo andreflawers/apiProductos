@@ -19,7 +19,8 @@ html(lang="es")
                             th costoOrden
                             th descuentoOrden
                             th totalOrden
-                            th nombreCliente                            
+                            th nombreCliente  
+                            th Locacion                          
                             -for(var prop in listaOrdenes)        
                                 tr
                                     td #{listaOrdenes[prop].idOrden}
@@ -28,5 +29,6 @@ html(lang="es")
                                     td #{listaOrdenes[prop].descuentoOrden.toFixed(2)}
                                     td #{listaOrdenes[prop].totalOrden.toFixed(2)}
                                     td #{listaOrdenes[prop].nombreCliente}
+                                    td #{listaOrdenes[prop].locacionOrden}
                                     td
                                         a(href="/suborden?idOrden=#{listaOrdenes[prop].idOrden}") Detalles
